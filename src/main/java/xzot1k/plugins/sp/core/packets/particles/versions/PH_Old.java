@@ -34,6 +34,10 @@ public class PH_Old implements ParticleHandler {
 
     @Override
     public void displayParticle(Player player, Location location, float offsetX, float offsetY, float offsetZ, int speed, String enumParticle, int amount) {
+        if (enumParticle == null || enumParticle.trim().isEmpty() 
+                || enumParticle.equalsIgnoreCase("none") || enumParticle.equalsIgnoreCase("off")) {
+            return;
+        }
         try {
             final Method valueOf = enumParticleClass.getDeclaredMethod("valueOf", String.class);
             final Object particle = valueOf.invoke(enumParticleClass, enumParticle);
@@ -52,6 +56,10 @@ public class PH_Old implements ParticleHandler {
 
     @Override
     public void broadcastParticle(Location location, float offsetX, float offsetY, float offsetZ, int speed, String enumParticle, int amount) {
+        if (enumParticle == null || enumParticle.trim().isEmpty() 
+                || enumParticle.equalsIgnoreCase("none") || enumParticle.equalsIgnoreCase("off")) {
+            return;
+        }
         try {
             final Method valueOf = enumParticleClass.getDeclaredMethod("valueOf", String.class);
             final Object particle = valueOf.invoke(enumParticleClass, enumParticle);

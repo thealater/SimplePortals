@@ -448,14 +448,16 @@ public class Manager {
      */
     public void playTeleportEffect(Location location) {
         final String particleEffect = pluginInstance.getConfig().getString("teleport-visual-effect");
-        if (particleEffect != null && !particleEffect.isEmpty()) {
+        if (particleEffect != null && !particleEffect.trim().isEmpty() 
+                && !particleEffect.equalsIgnoreCase("none") && !particleEffect.equalsIgnoreCase("off")) {
             final String particleFixed = particleEffect.toUpperCase().replace(" ", "_").replace("-", "_");
             pluginInstance.getManager().getParticleHandler().broadcastParticle(location,
                     1, 2, 1, 0, particleFixed, 50);
         }
 
         final String sound = pluginInstance.getConfig().getString("teleport-sound");
-        if (sound != null && !sound.equalsIgnoreCase("")) {
+        if (sound != null && !sound.trim().isEmpty() 
+                && !sound.equalsIgnoreCase("none") && !sound.equalsIgnoreCase("off")) {
             final String soundFixed = sound.toUpperCase().replace(" ", "_").replace("-", "_");
             for (int i = -1; ++i < Sound.values().length; ) {
                 Sound currentSound = Sound.values()[i];

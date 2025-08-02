@@ -33,7 +33,8 @@ public class HighlightTask extends BukkitRunnable {
     @Override
     public void run() {
         if (getLifeTime() >= getDuration() || getPlayer() == null || getWorld() == null || getBlockLocation() == null
-                || getParticleEffect() == null || getParticleEffect().isEmpty()) {
+                || getParticleEffect() == null || getParticleEffect().trim().isEmpty()
+                || getParticleEffect().equalsIgnoreCase("none") || getParticleEffect().equalsIgnoreCase("off")) {
             cancel();
             return;
         }

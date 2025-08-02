@@ -14,6 +14,10 @@ import xzot1k.plugins.sp.core.packets.particles.ParticleHandler;
 public class PH_Latest implements ParticleHandler {
     @Override
     public void displayParticle(Player player, Location location, float offsetX, float offsetY, float offsetZ, int speed, String enumParticle, int amount) {
+        if (enumParticle == null || enumParticle.trim().isEmpty() 
+                || enumParticle.equalsIgnoreCase("none") || enumParticle.equalsIgnoreCase("off")) {
+            return;
+        }
         Particle particle = Particle.valueOf(enumParticle);
         if (!SimplePortals.getPluginInstance().getServerVersion().startsWith("v1_8") && !SimplePortals.getPluginInstance().getServerVersion().startsWith("v1_9")
                 && !SimplePortals.getPluginInstance().getServerVersion().startsWith("v1_10") && !SimplePortals.getPluginInstance().getServerVersion().startsWith("v1_11")
@@ -24,6 +28,10 @@ public class PH_Latest implements ParticleHandler {
 
     @Override
     public void broadcastParticle(Location location, float offsetX, float offsetY, float offsetZ, int speed, String enumParticle, int amount) {
+        if (enumParticle == null || enumParticle.trim().isEmpty() 
+                || enumParticle.equalsIgnoreCase("none") || enumParticle.equalsIgnoreCase("off")) {
+            return;
+        }
         Particle particle = Particle.valueOf(enumParticle);
         if (!SimplePortals.getPluginInstance().getServerVersion().startsWith("v1_8") && !SimplePortals.getPluginInstance().getServerVersion().startsWith("v1_9")
                 && !SimplePortals.getPluginInstance().getServerVersion().startsWith("v1_10") && !SimplePortals.getPluginInstance().getServerVersion().startsWith("v1_11")

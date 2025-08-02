@@ -1,0 +1,33 @@
+name: Build JAR
+
+on:
+  push:        # every commit on any branch
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1) Fetch source
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # 2) Install & cache Java
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'   # Adoptium/Temurin build of OpenJDK
+          java-version: '17'        # or 8/11/21 … match your pom.xml
+          cache: 'maven'            # built-in Maven cache
+
+      # 3) Build
+      - name: Build with Maven
+        run: mvn -B package        # -B = batch (non-interactive) mode
+
+      # 4) Upload the JAR(s)
+      - name: Publish JAR artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: SimplePortals
+          path: target/*.jar        # adjust if your finalName differs

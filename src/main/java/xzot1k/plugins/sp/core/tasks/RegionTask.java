@@ -33,7 +33,8 @@ public class RegionTask extends BukkitRunnable {
     @Override
     public void run() {
         if (getLifeTime() >= getDuration() || getPlayer() == null || getWorld() == null || getPortal() == null
-                || getPortal().getRegion() == null || getParticleEffect() == null || getParticleEffect().isEmpty()) {
+                || getPortal().getRegion() == null || getParticleEffect() == null || getParticleEffect().trim().isEmpty()
+                || getParticleEffect().equalsIgnoreCase("none") || getParticleEffect().equalsIgnoreCase("off")) {
             cancel();
             return;
         }
