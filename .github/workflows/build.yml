@@ -11,11 +11,11 @@ jobs:
     steps:
       # 1) Fetch source
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       # 2) Install & cache Java
       - name: Set up JDK
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
           distribution: 'temurin'   # Adoptium/Temurin build of OpenJDK
           java-version: '17'        # or 8/11/21 … match your pom.xml
@@ -27,7 +27,7 @@ jobs:
 
       # 4) Upload the JAR(s)
       - name: Publish JAR artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: SimplePortals
           path: target/*.jar        # adjust if your finalName differs
