@@ -18,7 +18,7 @@ jobs:
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'   # Adoptium/Temurin build of OpenJDK
-          java-version: '17'        # or 8/11/21 … match your pom.xml
+          java-version: '21'        # Java 21 required for Paper 1.21
           cache: 'maven'            # built-in Maven cache
 
       # 3) Build
